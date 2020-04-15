@@ -4,7 +4,7 @@ Ryan Danu Saputra
 05111840000144
 
 LIST TUGAS
-  - [8 Puzzle (BFS)](#1-puzzle(bfs))
+  - [1. 8 Puzzle (BFS)](#1-puzzle(bfs))
   - 
   
 ## 1. 8 Puzzle (BFS) 

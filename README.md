@@ -4,11 +4,9 @@ Ryan Danu Saputra
 05111840000144
 
 LIST TUGAS
-  - [8 Puzzle (BFS)](#8puzzle(bfs))
-  - [Nomor 4](#nomor-4)
+  - [8 Puzzle (BFS)](#1-puzzle(bfs))
+  - 
   
-## Nomor 4 
-
 ## 8 Puzzle (BFS) 
 
   BFS merupakan singkatan dari `(Breadth First Search)` adalah suatu algoritma untuk yang melakukan pencarian berdasarkan kelebaran. strategi pencarian sederhana ini dimulai melalui simpul akar yang diperluas terlebih dahulu, kemudian di eksplorasi ke semua penerus simpul akar diperluas selanjutnya, kemudian penerusnya dan seterusnya sampai jalan terbaik yang mungkin telah ditemukan. 

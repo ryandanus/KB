@@ -1,9 +1,13 @@
 # Kecerdasan Buatan
 Tugas KB(Kecerdasan Buatan)
+Ryan Danu Saputra 
+05111840000144
 
 LIST TUGAS
-  * [8 Puzzle (BFS) ](# 8 puzzle - BFS)
+  - [8 Puzzle (BFS)](#8puzzlebfs)
+  - [Nomor 4](#nomor-4)
   
+## Nomor 4 
 
 ## 8 Puzzle (BFS) 
 

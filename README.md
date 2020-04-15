@@ -2,7 +2,7 @@
 Tugas KB(Kecerdasan Buatan)
 
 LIST TUGAS
-  - [8 Puzzle (BFS) ](#8 puzzle - BFS)
+  * [8 Puzzle (BFS) ](# 8 puzzle - BFS)
   
 
 ## 8 Puzzle (BFS) 

@@ -4,10 +4,12 @@ Ryan Danu Saputra
 05111840000144
 
 LIST TUGAS
-  - [1. 8 Puzzle (BFS)](#1-puzzle(bfs))
-  - 
+  - [1. 8 Puzzle (BFS)](#(BFS))
+  - [2. 8 Puzzle (DFS)](#(DFS))
   
-## 1. 8 Puzzle (BFS) 
+  
+  
+## (BFS) 8 Puzzle 
 
   BFS merupakan singkatan dari `(Breadth First Search)` adalah suatu algoritma untuk yang melakukan pencarian berdasarkan kelebaran. strategi pencarian sederhana ini dimulai melalui simpul akar yang diperluas terlebih dahulu, kemudian di eksplorasi ke semua penerus simpul akar diperluas selanjutnya, kemudian penerusnya dan seterusnya sampai jalan terbaik yang mungkin telah ditemukan. 
 
@@ -70,7 +72,7 @@ int bfs(){
 	}
 ```
 
-## 1. 8 Puzzle (DFS) 
+## (DFS) 8 Puzzle 
 
   DFS merupakan singkatan dari `Depth First Search` adalah suatu algoritma untuk yang melakukan pencarian berdasarkan kedalaman. strategi pencarian sederhana ini dimulai melalui simpul akar yang diperdalam terhadap suatu Node, kemudian di eksplorasi ke semua penerus simpul akar diperdalam hingga ujung Node, kemudian mengunjungi cabang node yang lain dan seterusnya sampai menemukan suatu nilai yang diinginkan.
 

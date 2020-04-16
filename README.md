@@ -6,7 +6,8 @@ Ryan Danu Saputra
 LIST TUGAS
   - [1. 8 Puzzle (BFS)](#BFS)
   - [2. 8 Puzzle (DFS)](#DFS)
-  
+  - [3. Minimax TicTacToe](#Minimax)
+ 
   
   
 ## (BFS) 8 Puzzle 
@@ -130,5 +131,21 @@ int dfs(int idsdepth){
 		return 0;
 	}
 ```
+## Minimax TicTacToe 
+
+TicTacToe merupakan game yang sangat populer, permainan ini dimainkan oleh dua pemain ,`X` dan `O` yang saling mengisi kotak 3x3
+secara bergantian. Untuk memenangkan permainan ini salah satu pemain harus bisa mengisi kotak tersebut dengan tiga tanda mereka secara horizontal,vertikal atau diagonal. Dalam permainan sangat memungkinkan terjadinya seri / draw karena pada dasarnya kedua pemain harus saling memaksimalkan kemungkinan untuk meraih kemenangan dan meminimalkan terjadinya kekalahan persis dengan jalan dari algoritma minimax
+
+Minimax adalah semacam algoritma backtracking yang digunakan dalam pengambilan keputusan dan teori permainan untuk menemukan langkah optimal bagi pemain, dengan asumsi bahwa lawan Anda juga bermain secara optimal. Ini banyak digunakan dalam dua permainan berbasis giliran pemain seperti Tic-Tac-Toe, Backgammon, Mancala, Catur, dll.
+(https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-1-introduction/)
+
+Di Minimax kedua pemain disebut maximizer dan minimizer. The maximizer mencoba untuk mendapatkan skor tertinggi mungkin sementara minimizer mencoba untuk melakukan yang sebaliknya dan mendapatkan skor terendah mungkin.
+
+Karena ini adalah algoritma berbasis backtracking, ia mencoba semua gerakan yang mungkin, kemudian melakukan backtracks dan membuat keputusan.
+
+Source Code : [bot tic tac toe minimax](https://github.com/ryandanus/KB/blob/master/Tictactoe/minimax.cpp)
+
+
+
 
 

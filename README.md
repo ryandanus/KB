@@ -36,6 +36,8 @@ bfs akan secara rekursif mencari setiap tingkat pohon biner menjadi lebih dalam 
 - Jika Node 3 bukan node tujuan kami , tambahkan Node 6 dan Node 7 ke queue
 - Ulangi sampai Node sasaran ditemukan.
 
+Source Code : [8-puzzle_bfs.cpp](https://github.com/ryandanus/KB/blob/master/8puzzle%20(BFS)/8-puzzle_bfs.cpp)
+
 penyelesaian 8puzzle dalam bahasa c++ ini , melakukan pencarian secara BFS
 Pencarian dilakukan dengan memperluas jangkauannya , dimulai dari root kemudian ke tingkat selanjutnya namun ketika di tingkatan selanjutnya tidak ditemukan nilai yang cari maka program akan meneruskan ke sebelahnya bukan ke tingkatan selanjutnya lagi.
 

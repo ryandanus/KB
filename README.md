@@ -139,11 +139,64 @@ secara bergantian. Untuk memenangkan permainan ini salah satu pemain harus bisa 
 Minimax adalah semacam algoritma backtracking yang digunakan dalam pengambilan keputusan dan teori permainan untuk menemukan langkah optimal bagi pemain, dengan asumsi bahwa lawan Anda juga bermain secara optimal. Ini banyak digunakan dalam dua permainan berbasis giliran pemain seperti Tic-Tac-Toe, Backgammon, Mancala, Catur, dll.
 (https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-1-introduction/)
 
-Di Minimax kedua pemain disebut maximizer dan minimizer. The maximizer mencoba untuk mendapatkan skor tertinggi mungkin sementara minimizer mencoba untuk melakukan yang sebaliknya dan mendapatkan skor terendah mungkin.
+Di Minimax kedua pemain disebut maximizer dan minimizer. The maximizer mencoba untuk mendapatkan skor tertinggi mungkin sementara minimizer mencoba untuk melakukan yang sebaliknya dan mendapatkan skor terendah mungkin. Kejadian tersebut akan seperti ini jika digambarkan
+
+![Annotation 2020-04-17 093335](https://user-images.githubusercontent.com/59832754/79526274-1937fe00-808f-11ea-83fb-110c856adc4d.png)
+
 
 Karena ini adalah algoritma berbasis backtracking, ia mencoba semua gerakan yang mungkin, kemudian melakukan backtracks dan membuat keputusan.
 
 Source Code : [bot tic tac toe minimax](https://github.com/ryandanus/KB/blob/master/Tictactoe/minimax.cpp)
+
+terdapat beberapa fungsi pada kodingan tersebut yaitu `gridChar();` ,`draw();` ,`win();` ,`minimax();` ,`computerMove();` ,`playerMove();` ,`main();` 
+
+`gridChar();` berfungsi untuk mengecek apakah di dalam kolom tersebut sudah terisi karakter X maupun O atau masih kosong
+
+`draw();`draw untuk mencetak board papan tictactoe yang berbentuk array dan sebelumnya telah di cek di fungsi grid
+
+`win();` fungsi win untuk mengecek kondisi capaian kemenangan dari pemain, apakah ada pemain yang telah mengisi board secara horizontal,vertikal ataupun diagonal
+
+```c
+int win(const int board[9]) {
+    //determines if a player has won, returns 0 otherwise.
+    unsigned wins[8][3] = {{0,1,2},{3,4,5},{6,7,8},{0,3,6},{1,4,7},{2,5,8},{0,4,8},{2,4,6}};
+    int i;
+    for(i = 0; i < 8; ++i) {
+        if(board[wins[i][0]] != 0 &&
+           board[wins[i][0]] == board[wins[i][1]] &&
+           board[wins[i][0]] == board[wins[i][2]])
+            return board[wins[i][2]];
+    }
+    return 0;
+}
+```
+`minimax();` fungsi inilah yang mengimplementasikan metode minimax pada permainan tictactoe ini dengan mengecek perpindahan pemain
+
+```c
+int minimax(int board[9], int player) {
+    //How is the position like for player (their turn) on board?
+    int winner = win(board);
+    if(winner != 0) return winner*player;
+
+    int move = -1;
+    int score = -2;//Losing moves are preferred to no move
+    int i;
+    for(i = 0; i < 9; ++i) {//For all moves,
+        if(board[i] == 0) {//If legal,
+            board[i] = player;//Try the move
+            int thisScore = -minimax(board, player*-1);
+            if(thisScore > score) {
+                score = thisScore;
+                move = i;
+            }//Pick the one that's worst for the opponent
+            board[i] = 0;//Reset board after try
+        }
+    }
+    if(move == -1) return 0;
+    return score;
+}
+```
+
 
 
 

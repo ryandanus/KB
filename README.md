@@ -146,6 +146,87 @@ Di Minimax kedua pemain disebut maximizer dan minimizer. The maximizer mencoba u
 
 Karena ini adalah algoritma berbasis backtracking, ia mencoba semua gerakan yang mungkin, kemudian melakukan backtracks dan membuat keputusan.
 
+jika dalam permainan ini digambarkan dengan tree maka terdapat banyak kondisi/state dan komponen-komponen pembentuknya.
+Kondisi awal dalam permainan digambarkan sebagai`Initial state` dimana keadaan ketika pencarian tersebut akan dilakukan. Jika pemain pertama jalan pertama maka ,initial statenya adalah :
+
+![tictactoe.1](https://user-images.githubusercontent.com/52326074/77034748-4dab9200-69dd-11ea-8215-48c660f28237.JPG)
+
+Initial state ini akan selalu berubah saat giliran jalan pemain pertama.
+
+![basic-minimax-1](https://user-images.githubusercontent.com/59832754/79627740-1576ab00-8165-11ea-8fde-7ee92a124b8a.png)
+
+
+Lalu saat pemain mengisi kotak permainan secara sembarang di kotak yang masih kosong terdapat`Operator (rule/ilegal moves)`, Operator pada permainan ini adalah pemain 
+
+Ada juga `Terminal Test` yang merupakan keadaan dimana komposisi terbaik yang dilakukan pemain pertama setelah diadakan penelusuran.
+
+Dan perhitungan poin minimax ditentukan melalui `Utility function` yang mencari kemungkinan kemenangan bagi pemain pertama dikurangi dengan kemungkinan kemenangan dari pemain kedua. 
+
+Ketika permainan tictactoe dimulai tiap pemain akan memiliki kemungkinan kemenangan sejumlah 8 yaitu saat salah satu dari pemain mengisi kotak permainan secara horizontal, vertikal, dan diagonal.
+
+![tictactoe.2](https://user-images.githubusercontent.com/52326074/77034890-b561dd00-69dd-11ea-9a93-b8adca75b3e8.JPG)
+
+horizontal 	: 3
+vertikal	: 3
+diagonal	: 2
+
+`3 + 3 + 2 = 8` kemungkinan menang tiap pemain
+
+Contoh Perhitungan pada komposisi :
+
+![tictactoe.3](https://user-images.githubusercontent.com/52326074/77034911-c4488f80-69dd-11ea-904e-87b6294917db.JPG)
+
+Kemungkinan kemenangan pemain pertama adalah 6, sedangkan kemungkinan kemenangan pemain kedua adalah 5.
+
+![tictactoe.4](https://user-images.githubusercontent.com/52326074/77034938-d88c8c80-69dd-11ea-845c-596e936eaad9.JPG)
+
+Jadi nilai untuk komposisi di atas adalah 6 – 5 = 1.
+
+Dari keadaan permainan dimulai, graph minimax untuk Two-Ply Search dapat digambarkan sebagai berikut 
+(X = pemain pertama, O = pemain kedua):
+
+![tictactoe.5](https://user-images.githubusercontent.com/52326074/77034975-efcb7a00-69dd-11ea-97ae-2ff5b0943d04.JPG)
+
+Nilai node E sampai P didapat dari utility function yang telah didefinisikan sebelumnya sehingga didapatkan :
+```
+E = 6 – 5 = 1
+F = 5 – 5 = 0
+G = 6 – 5 = 1
+H = 5 – 5 = 0
+I = 4 – 5 = -1
+J = 5 – 4 = 1
+K = 6 – 4 = 2
+L = 5 – 6 = -1
+M = 5 – 5 = 0
+N = 5 – 6 = -1
+O = 6 – 6 = 0
+P = 4 – 6 = -2
+```
+
+Ada sembilan langkah yang mungkin dilakukan oleh pemain pertama karena kotak kosongnya berjumlah 9, tapi pada diagram diatas hanya diambil 3 kemungkinan (node B,C dan D), karena 6 kemungkinan lainnya setara dengan ke-3 komposisi di atas, misalnya :
+
+![tictactoe.6](https://user-images.githubusercontent.com/52326074/77035007-083b9480-69de-11ea-9932-0b194195291b.JPG)
+
+Dari node B seharusnya didapatkan node anak sebanyak 8 node, dengan mengabaikan node yang setara node anak dari B menjadi E, F, G, H dan I. Dengan cara yang sama didapatkan node anak dari C yaitu J dan K, sedangkan node anak dari D yaitu L, M, N, O dan P.
+
+Karena hanya menggunakan Two-Ply Search, node-node anak dari B, C dan D dicari nilainya, kemudian dicari yang terkecil (min) masing-masing untuk dijadikan nilai B, C dan D. Selanjutnya dicari nilai terbesar (max) dari ketiga nilai tersebut untuk menentukan langkah pemain pertama.
+
+Pada diagram yang digambarkan diatas, node anak dari B bernilai masing-masing E=1, F=0, G=1, H=0 dan I=-1 jadi nilai B diambil yang terkecil yaitu –1.
+
+Node anak dari C bernilai masing-masing J=1 dan K=2 jadi nilai C diambil yang terkecil yaitu 1. Kemudian node anak dari D bernilai masing-masing L=-1, M=0, N=-1, O=0 dan P=-2 jadi nilai C diambil yang terkecil yaitu –2.
+
+Selanjutnya dari nilai node B=-1, C=1, dan D=-2 diambil nilai terbesar yaitu C=1, yang berarti langkah terbaik yang harus dilakukan oleh pemain pertama adalah node C.
+
+Setelah pemain kedua menempatkan buahnya, keadaan saat itu dijadikan initial state dan dilakukan kembali pelacakan dengan langkah yang telah dijelaskan di atas. Contoh : Misalkan pemain kedua meletakkan buahnya seperti gambar berikut :
+
+![tictactoe.7](https://user-images.githubusercontent.com/52326074/77035046-21444580-69de-11ea-89a1-5eeb2dd345c4.JPG)
+
+Dari keadaan ini, graph minimax untuk Two-Ply Search dapat digambarkan sebagai berikut (X = pemain pertama, O = pemain kedua):
+
+![tictactoe.8](https://user-images.githubusercontent.com/52326074/77035066-2e613480-69de-11ea-816d-f67b069d2523.JPG)
+
+Dari diagram diatas, langkah terbaik yang dapat dilakukan oleh pemain pertama terdapat dua pilihan yaitu B(1) dan D(1).
+
 Source Code : [bot tic tac toe minimax](https://github.com/ryandanus/KB/blob/master/Tictactoe/minimax.cpp)
 
 terdapat beberapa fungsi pada kodingan tersebut yaitu `gridChar();` ,`draw();` ,`win();` ,`minimax();` ,`computerMove();` ,`playerMove();` ,`main();` 
@@ -196,85 +277,5 @@ int minimax(int board[9], int player) {
     return score;
 }
 ```
-
-jika dalam permainan ini digambarkan dengan tree maka terdapat banyak kondisi/state dan komponen-komponen pembentuknya.
-Kondisi awal dalam permainan digambarkan sebagai`Initial state` dimana keadaan ketika pencarian tersebut akan dilakukan. Jika pemain pertama jalan pertama maka ,initial statenya adalah :
-
-![tictactoe.1](https://user-images.githubusercontent.com/52326074/77034748-4dab9200-69dd-11ea-8215-48c660f28237.JPG)
-
-Initial state ini akan selalu berubah saat giliran jalan pemain pertama.
-
-Lalu saat pemain mengisi kotak permainan secara sembarang di kotak yang masih kosong terdapat`Operator (rule/ilegal moves)`, Operator pada permainan ini adalah pemain 
-
-Ada juga `Terminal Test` yang merupakan keadaan dimana komposisi terbaik yang dilakukan pemain pertama setelah diadakan penelusuran.
-
-Dan perhitungan poin minimax ditentukan melalui `Utility function` yang mencari kemungkinan kemenangan bagi pemain pertama dikurangi dengan kemungkinan kemenangan dari pemain kedua. 
-
-Ketika permainan tictactoe dimulai tiap pemain akan memiliki kemungkinan kemenangan sejumlah 8 yaitu saat salah satu dari pemain mengisi kotak permainan secara horizontal, vertikal, dan diagonal.
-
-![tictactoe.2](https://user-images.githubusercontent.com/52326074/77034890-b561dd00-69dd-11ea-9a93-b8adca75b3e8.JPG)
-
-horizontal 	: 3
-vertikal	: 3
-diagonal	: 2
-
-3 + 3 + 2 = 8 kemungkinan menang tiap pemain
-
-Contoh Perhitungan pada komposisi :
-
-![tictactoe.3](https://user-images.githubusercontent.com/52326074/77034911-c4488f80-69dd-11ea-904e-87b6294917db.JPG)
-
-Kemungkinan kemenangan pemain pertama adalah 6, sedangkan kemungkinan kemenangan pemain kedua adalah 5.
-
-![tictactoe.4](https://user-images.githubusercontent.com/52326074/77034938-d88c8c80-69dd-11ea-845c-596e936eaad9.JPG)
-
-Jadi nilai untuk komposisi di atas adalah 6 – 5 = 1.
-
-Dari keadaan permainan dimulai, graph minimax untuk Two-Ply Search dapat digambarkan sebagai berikut (X = pemain pertama, O = pemain kedua):
-
-![tictactoe.5](https://user-images.githubusercontent.com/52326074/77034975-efcb7a00-69dd-11ea-97ae-2ff5b0943d04.JPG)
-
-Nilai node E sampai P didapat dari utility function yang telah didefinisikan sebelumnya sehingga didapatkan :
-```
-E = 6 – 5 = 1
-F = 5 – 5 = 0
-G = 6 – 5 = 1
-H = 5 – 5 = 0
-I = 4 – 5 = -1
-J = 5 – 4 = 1
-K = 6 – 4 = 2
-L = 5 – 6 = -1
-M = 5 – 5 = 0
-N = 5 – 6 = -1
-O = 6 – 6 = 0
-P = 4 – 6 = -2
-```
-
-Ada sembilan langkah yang mungkin dilakukan oleh pemain pertama karena kotak kosongnya berjumlah 9, tapi pada diagram diatas hanya diambil 3 kemungkinan (node B,C dan D), karena 6 kemungkinan lainnya setara dengan ke-3 komposisi di atas, misalnya :
-
-![tictactoe.6](https://user-images.githubusercontent.com/52326074/77035007-083b9480-69de-11ea-9932-0b194195291b.JPG)
-
-Dari node B seharusnya didapatkan node anak sebanyak 8 node, dengan mengabaikan node yang setara node anak dari B menjadi E, F, G, H dan I. Dengan cara yang sama didapatkan node anak dari C yaitu J dan K, sedangkan node anak dari D yaitu L, M, N, O dan P.
-
-Karena hanya menggunakan Two-Ply Search, node-node anak dari B, C dan D dicari nilainya, kemudian dicari yang terkecil (min) masing-masing untuk dijadikan nilai B, C dan D. Selanjutnya dicari nilai terbesar (max) dari ketiga nilai tersebut untuk menentukan langkah pemain pertama.
-
-Pada diagram yang digambarkan diatas, node anak dari B bernilai masing-masing E=1, F=0, G=1, H=0 dan I=-1 jadi nilai B diambil yang terkecil yaitu –1.
-
-Node anak dari C bernilai masing-masing J=1 dan K=2 jadi nilai C diambil yang terkecil yaitu 1. Kemudian node anak dari D bernilai masing-masing L=-1, M=0, N=-1, O=0 dan P=-2 jadi nilai C diambil yang terkecil yaitu –2.
-
-Selanjutnya dari nilai node B=-1, C=1, dan D=-2 diambil nilai terbesar yaitu C=1, yang berarti langkah terbaik yang harus dilakukan oleh pemain pertama adalah node C.
-
-Setelah pemain kedua menempatkan buahnya, keadaan saat itu dijadikan initial state dan dilakukan kembali pelacakan dengan langkah yang telah dijelaskan di atas. Contoh : Misalkan pemain kedua meletakkan buahnya seperti gambar berikut :
-
-![tictactoe.7](https://user-images.githubusercontent.com/52326074/77035046-21444580-69de-11ea-89a1-5eeb2dd345c4.JPG)
-
-Dari keadaan ini, graph minimax untuk Two-Ply Search dapat digambarkan sebagai berikut (X = pemain pertama, O = pemain kedua):
-
-![tictactoe.8](https://user-images.githubusercontent.com/52326074/77035066-2e613480-69de-11ea-816d-f67b069d2523.JPG)
-
-Dari diagram diatas, langkah terbaik yang dapat dilakukan oleh pemain pertama terdapat dua pilihan yaitu B(1) dan D(1).
-
-
-
 
 

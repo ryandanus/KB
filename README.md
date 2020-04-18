@@ -170,7 +170,7 @@ int win(const int board[9]) {
     return 0;
 }
 ```
-`minimax();` fungsi inilah yang mengimplementasikan metode minimax pada permainan tictactoe ini dengan mengecek perpindahan pemain
+`minimax();` fungsi inilah yang mengimplementasikan metode minimax pada permainan tictactoe ini dengan mengecek perpindahan pemain dan ia akan berjalan secara rekursif , pertama kali dipanggil di `computerMove();`
 
 ```c
 int minimax(int board[9], int player) {

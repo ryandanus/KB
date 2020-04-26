@@ -7,6 +7,7 @@ LIST TUGAS
   - [1. 8 Puzzle (BFS)](#BFS)
   - [2. 8 Puzzle (DFS)](#DFS)
   - [3. Minimax TicTacToe](#Minimax)
+  - [8queenp puzzle](#8queen)
  
   
   

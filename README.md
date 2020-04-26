@@ -131,6 +131,75 @@ int dfs(int idsdepth){
 		return 0;
 	}
 ```
+
+## N - Queen(8queen)
+8queen puzzle adalah masalah menempatkan delapan catur ratu pada 8 × 8 papan catur sehingga tidak ada dua Ratu mengancam satu sama lain; dengan demikian, sebuah solusi mensyaratkan bahwa tidak ada dua ratu berbagi baris, kolom, atau diagonal yang sama. Delapan ratu puzzle adalah contoh yang lebih umum n Queens menempatkan n non-menyerang ratu pada n × n papan catur, yang solusi yang ada untuk semua bilangan n dengan pengecualian dari n = 2 dan n = 3. 
+
+8 queen merupakan permainan yang diterbutjan pada tahun 1848 oleh seorang komposer catur Max Bezzel dan ada yang menemukan solusi nya pada tahun 1850. Permainan ini juga diperluas dengan cara memperluas masalah n queen dengan n x n papan caturnya 
+
+permasalahan ini diselesaikan dengan menggunakan rekursi untuk mengecek ratu apakah ratu tersebut dapat terserang oleh ratu lain, 
+```c
+int is_attack(int i,int j)
+{
+    int k,l;
+    //checking if there is a queen in row or column
+    for(k=0;k<N;k++)
+    {
+        if((board[i][k] == 1) || (board[k][j] == 1))
+            return 1;
+    }
+    //checking for diagonals
+    for(k=0;k<N;k++)
+    {
+        for(l=0;l<N;l++)
+        {
+            if(((k+l) == (i+j)) || ((k-l) == (i-j)))
+            {
+                if(board[k][l] == 1)
+                    return 1;
+            }
+        }
+    }
+    return 0;
+}
+```
+jika terdapat ratu yang terserang ratu lain maka ia akan diposisikan di tempat selanjutnya oleh karena itu ia menggunakan 	`backtracking`	dimana posisi ratu sebelum itu akan diubah
+```c
+
+int N_queen(int n)
+{
+    int i,j;
+    //if n is 0, solution found
+    if(n==0)
+        return 1;
+    for(i=0;i<N;i++)
+    {
+        for(j=0;j<N;j++)
+        {
+            //checking if we can place a queen here or not
+            //queen will not be placed if the place is being attacked
+            //or already occupied
+            if((!is_attack(i,j)) && (board[i][j]!=1))
+            {
+                board[i][j] = 1;
+                //recursion
+                //wether we can put the next queen with this arrangment or not
+                if(N_queen(n-1)==1)
+                {
+                    return 1;
+                }
+                board[i][j] = 0;
+            }
+        }
+    }
+    return 0;
+}
+```
+jika digambarkan maka algoritma itu akan  berjalan seperti yang digambarkan dibawah ini
+
+![Eight-queens-animation](https://user-images.githubusercontent.com/59832754/80300410-ac2b1380-87c6-11ea-88d5-f216a0046bba.gif)
+
+
 ## Minimax TicTacToe 
 
 TicTacToe merupakan game yang sangat populer, permainan ini dimainkan oleh dua pemain ,`X` dan `O` yang saling mengisi kotak 3x3

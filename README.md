@@ -200,6 +200,8 @@ jika digambarkan maka algoritma itu akan  berjalan seperti yang digambarkan diba
 
 ![Eight-queens-animation](https://user-images.githubusercontent.com/59832754/80300410-ac2b1380-87c6-11ea-88d5-f216a0046bba.gif)
 
+![qureen](https://user-images.githubusercontent.com/59832754/80300845-35901500-87ca-11ea-9a9d-22b486915e1f.png)
+
 
 ## Minimax TicTacToe 
 

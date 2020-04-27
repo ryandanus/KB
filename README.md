@@ -349,5 +349,96 @@ int minimax(int board[9], int player) {
     return score;
 }
 ```
+## Heuristic 
 
+Dalam bahasan ini, fungsi heuristik yang akan kita tampilkan yaitu adalah sebagai berikut.
 
+h₁(n) : sebagai banyak grid yang menempati tempat yang salah.
+h₂(n) : sebagai total keseluruhan jarak tiap grid yang menempati tempat yang salah terhadap posisi grid yang benar, atau sering disebut dengan manhattan distance.
+
+Heuristic 1
+
+Solusi Heuristic1 adalah banyaknya grid yang menempati posisi yang salah langkah-langkahnya adalah :
+
+![1](https://user-images.githubusercontent.com/59832754/80332263-8a886580-8874-11ea-8a8c-3be632af7d21.png)
+
+Solusi : Initial State -> Right -> Up -> Right -> Down -> Down -> Left -> Up -> Right -> Down(Goal)
+
+Heuristic 2
+
+Solusi Heuristic 2 adalah total keseluruhan jarak tiap grid yang menempati tempat yang salah terhadap posisi grid yang benar, atau sering disebut dengan manhattan distance. langkah-langkahnya adalah:
+
+![2](https://user-images.githubusercontent.com/59832754/80332268-8d835600-8874-11ea-80a4-ba5e7309432a.png)
+
+Solusi : Initial State -> Right -> Up -> Right -> Down -> Down -> Left -> Up -> Right -> Up(Goal) Penggunaan Heuristic2 lebih optimal karena pada penggunaan fungsi heuristik pertama jumlah State puzzle yang memiliki fungsi heuristik yang sama lebih banyak dari pada penggunaan fungsi heuristik kedua.
+
+## Hill Climbing
+
+Hill Climbing adalah pencarian heuristik yang digunakan untuk masalah optimasi matematis di bidang Inteligensi Buatan.
+
+Dengan sejumlah besar input dan fungsi heuristik yang baik, ia mencoba untuk menemukan solusi yang cukup baik untuk masalah tersebut. Solusi ini mungkin bukan global optimal maksimum.
+
+Dalam definisi di atas, Mathematical Optimization Problems menyiratkan bahwa mendaki bukit memecahkan masalah di mana kita perlu memaksimalkan atau meminimalkan fungsi nyata yang diberikan dengan memilih nilai dari input yang diberikan. Contoh-Traveling salesman masalah di mana kita perlu meminimalkan jarak yang ditempuh oleh salesman.
+Heuristic Search berarti bahwa algoritma pencarian ini mungkin tidak menemukan solusi optimal untuk masalah tersebut. Namun, itu akan memberikan solusi yang baik dalam waktu yang wajar.
+Heuristic Function adalah fungsi yang akan memberi peringkat semua alternatif yang mungkin pada setiap langkah percabangan dalam algoritma pencarian berdasarkan informasi yang tersedia. Ini membantu algoritma untuk memilih rute terbaik dari rute yang mungkin.
+
+![1](https://user-images.githubusercontent.com/59832754/80332653-9de80080-8875-11ea-851a-f3ab38c9f8ea.png)
+
+Fitur Hill Climbing
+a. Varian dari menghasilkan dan menguji algoritma
+Ini adalah varian dari algoritma generate and test. Algoritma generate and test adalah sebagai berikut:
+
+Hasilkan solusi yang mungkin.
+Tes untuk melihat apakah ini solusi yang diharapkan.
+Jika solusinya telah ditemukan, keluar lagi, lanjutkan ke langkah 1.
+Oleh karena itu kami menyebut Hill climbing sebagai varian dari algoritma hasil dan uji karena mengambil umpan balik dari prosedur pengujian. Kemudian umpan balik ini digunakan oleh generator dalam memutuskan langkah selanjutnya dalam ruang pencarian.
+
+b. Menggunakan Greedy Aproach
+Pada titik mana pun di ruang keadaan, pencarian bergerak ke arah itu saja yang mengoptimalkan biaya fungsi dengan harapan menemukan solusi optimal di akhir.
+
+Jenis Hill Climbing
+a. Simple Hill Climbing
+Ini memeriksa node tetangga satu per satu dan memilih node tetangga pertama yang mengoptimalkan biaya saat ini sebagai node berikutnya. Ini memeriksa node tetangga satu per satu dan memilih node tetangga pertama yang mengoptimalkan biaya saat ini sebagai node berikutnya.
+
+Algoritma Simple Hill climbing :
+
+Evaluasi keadaan awal. Jika itu adalah keadaan tujuan maka berhentilah dan kembalikan kesuksesan. Kalau tidak, jadikan kondisi awal sebagai kondisi saat ini.
+Loop sampai keadaan solusi ditemukan atau tidak ada operator baru yang dapat diterapkan ke keadaan saat ini.
+Exit
+b. Steepest-Ascent Hill Climbing
+Pertama-tama memeriksa semua node tetangga dan kemudian memilih simpul yang paling dekat dengan keadaan solusi pada simpul berikutnya.
+
+Evaluasi keadaan awal. Jika status tujuan maka keluar dari yang lain jadikan status saat ini sebagai keadaan awal
+Ulangi langkah ini sampai solusi ditemukan atau keadaan saat ini tidak berubah
+Exit
+c. Stochastic Hill Climbing
+Itu tidak memeriksa semua node tetangga sebelum memutuskan node mana yang akan dipilih. Itu hanya memilih node tetangga secara acak dan memutuskan (berdasarkan jumlah peningkatan tetangga itu) apakah akan pindah ke tetangga itu atau untuk memeriksa yang lain.
+
+State Space Diagram untuk Hill Climbing
+adalah representasi grafis dari himpunan status yang dapat dicapai oleh algoritma pencarian kami vs nilai fungsi objektif kami (fungsi yang ingin kami maksimalkan).
+
+X - axis menunjukkan ruang keadaan yaitu keadaan atau konfigurasi yang dapat dicapai algoritma kami.
+
+Y - axis menunjukkan nilai-nilai fungsi obyektif yang sesuai dengan keadaan tertentu.
+
+Solusi terbaik adalah ruang negara di mana fungsi objektif memiliki nilai maksimum (global maksimum).
+
+![2](https://user-images.githubusercontent.com/59832754/80332660-a0e2f100-8875-11ea-97e4-c66b343cfe8c.png)
+
+Daerah berbeda di State Space Diagram
+Local Maximum Ini adalah state yang lebih baik daripada state tetangganya namun ada state yang lebih baik daripada itu (global maksimum). Keadaan ini lebih baik karena di sini nilai fungsi objektif lebih tinggi daripada tetangganya.
+Global Maximum Ini adalah keadaan terbaik yang mungkin dalam diagram ruang keadaan. Ini karena pada keadaan ini, fungsi objektif memiliki nilai tertinggi.
+Plateua/Flat Local Maximum Ini adalah wilayah datar ruang negara di mana negara-negara tetangga memiliki nilai yang sama.
+Ridge Ini adalah wilayah yang lebih tinggi dari tetangganya tetapi memiliki kemiringan. Ini adalah jenis khusus maksimum lokal.
+Current State Wilayah diagram ruang keadaan tempat kami saat ini hadir selama pencarian.
+Shoulder Ini adalah dataran tinggi yang memiliki tepi menanjak.
+
+Permasalahan di Berbagai Daerah di Hill Climbing
+Local Maximum semua state tetangga memiliki nilai yang lebih buruk daripada keadaan saat ini. Karena Hill Climbing menggunakan pendekatan serakah, itu tidak akan bergerak ke keadaan yang lebih buruk dan mengakhiri dirinya sendiri. Proses ini akan berakhir meskipun mungkin ada solusi yang lebih baik.
+To Overcome Local Maximum Problem Gunakan teknik backtracking. Menyimpan daftar negara yang dikunjungi. Jika pencarian mencapai kondisi yang tidak diinginkan, pencarian dapat mundur ke konfigurasi sebelumnya dan menjelajahi jalur baru.
+
+Plateau Di plateau semua tetangga memiliki nilai yang sama. Oleh karena itu, tidak mungkin untuk memilih arah terbaik.
+To Overcome Plateaus Lakukan lompatan besar. Pilih negara yang secara acak jauh dari keadaan saat ini. Kemungkinannya adalah bahwa kita akan mendarat di wilayah non-dataran tinggi
+
+Ridges Setiap titik di punggung bukit dapat terlihat seperti puncak karena gerakan ke semua arah yang mungkin terjadi adalah ke bawah. Karenanya algoritma berhenti ketika mencapai kondisi ini.
+To Overcome Ridge Dalam hambatan semacam ini, gunakan dua aturan atau lebih sebelum pengujian. Itu berarti bergerak ke beberapa arah sekaligus.
